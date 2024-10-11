@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Form Pendaftaran</title>
+    <style>
+        body {
+            background-color: #d2c3f5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #9678f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-container h2 {
+            color: #000;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            color: #000;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Form Pendaftaran</h2>
+        <form id="registrationForm">
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+            <label for="alamat">Alamat Lengkap</label>
+            <textarea id="alamat" name="alamat" rows="4"></textarea>
+            <button type="submit">Daftar</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var nama = document.getElementById('nama').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var alamat = document.getElementById('alamat').value.trim();
+
+            if (nama === '' || email === '' || alamat === '') {
+                alert('Semua data harus diisi.');
+            } else {
+                alert('Form berhasil disubmit!');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #d3c4f3;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .calculator {
+            width: 320px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .display {
+            background-color: #1c1b2b;
+            color: white;
+            text-align: right;
+            padding: 20px;
+            font-size: 48px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .button {
+            background-color: #3e3d4a;
+            border: 1px solid #3e3d4a;
+            color: white;
+            font-size: 24px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .button.operator {
+            background-color: #7a5cf3;
+        }
+        .button:active {
+            background-color: #5a5a5a;
+        }
+        .button.operator:active {
+            background-color: #5a3cf3;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <div class="button" id="clear">AC</div>
+            <div class="button">±</div>
+            <div class="button">%</div>
+            <div class="button operator">÷</div>
+            <div class="button">7</div>
+            <div class="button">8</div>
+            <div class="button">9</div>
+            <div class="button operator">×</div>
+            <div class="button">4</div>
+            <div class="button">5</div>
+            <div class="button">6</div>
+            <div class="button operator">−</div>
+            <div class="button">1</div>
+            <div class="button">2</div>
+            <div class="button">3</div>
+            <div class="button operator">+</div>
+            <div class="button">0</div>
+            <div class="button">.</div>
+            <div class="button operator" style="grid-column: span 2;" id="equals">=</div>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+        let operator = '';
+        let previousInput = '';
+
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('.button');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const buttonText = button.innerText;
+
+                if (buttonText === 'AC') {
+                    clearAll();
+                } else if (buttonText === '=') {
+                    calculate();
+                } else if (buttonText === '±') {
+                    toggleSign();
+                } else {
+                    handleInput(buttonText);
+                }
+            });
+        });
+
+        function clearAll() {
+            currentInput = '';
+            operator = '';
+            previousInput = '';
+            display.innerText = '0';
+        }
+
+        function handleInput(value) {
+            if (['+', '-', '×', '÷', '%', '±', '**'].includes(value)) {
+                if (currentInput === '') return; // Ignore if no input
+                if (previousInput !== '') {
+                    calculate();
+                }
+                operator = value === '×' ? '*' : value === '÷' ? '/' : value === '%' ? '%' : value;
+                previousInput = currentInput;
+                currentInput = '';
+            } else {
+                currentInput += value;
+                display.innerText = currentInput;
+            }
+        }
+
+        function toggleSign() {
+            if (currentInput) {
+                currentInput = (parseFloat(currentInput) * -1).toString();
+                display.innerText = currentInput;
+            }
+        }
+
+        function calculate() {
+            if (currentInput === '' || previousInput === '') return;
+            let result;
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+
+            switch (operator) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '*':
+                    result = prev * current;
+                    break;
+                case '/':
+                    result = prev / current;
+                    break;
+                case '%':
+                    result = prev % current;
+                    break;
+                case '**':
+                    result = Math.pow(prev, current);
+                    break;
+                default:
+                    return;
+            }
+            currentInput = result.toString();
+            operator = '';
+            previousInput = '';
+            display.innerText = currentInput;
+        }
+    </script>
+</body>
+</html>
