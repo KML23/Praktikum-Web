@@ -10,7 +10,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #d3c4f3;
+            background-color: #2e2e2e;
             margin: 0;
             font-family: 'Arial', sans-serif;
         }
@@ -18,46 +18,80 @@
             width: 320px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            background-color: #000000;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        .expression-display {
+            background-color: #000000;
+            color: rgb(128, 128, 128);
+            text-align: right;
+            padding: 20px 20px 0px;
+            font-size: 18px;
+            height: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
         .display {
-            background-color: #1c1b2b;
+            background-color: #000000;
             color: white;
             text-align: right;
-            padding: 20px;
+            padding: 0px 20px 10px;
             font-size: 48px;
+            height: 100px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            transition: transform 0.2s ease;
         }
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            padding: 10px;
         }
         .button {
-            background-color: #3e3d4a;
-            border: 1px solid #3e3d4a;
-            color: white;
+            border: none;
             font-size: 24px;
             padding: 20px;
             text-align: center;
             cursor: pointer;
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.1s ease;
         }
-        .button.operator {
-            background-color: #7a5cf3;
+        .button:hover {
+            background-color: #555;
         }
         .button:active {
-            background-color: #5a5a5a;
+            transform: scale(0.95);
+            background-color: #444;
         }
-        .button.operator:active {
-            background-color: #5a3cf3;
+        .button#clear, .button#percent, .button#toggle-sign {
+            background-color: #d4d4d2;
+            color: black;
+        }
+        .button.operator {
+            background-color: #ff9500;
+        }
+        .button:not(.operator):not(#clear):not(:nth-child(2)):not(:nth-child(3)) {
+            background-color: #333333;
+        }
+        .button#zero {
+            grid-column: span 2;
+            border-radius: 50px;
         }
     </style>
 </head>
 <body>
     <div class="calculator">
+        <div class="expression-display" id="expression-display"></div>
         <div class="display" id="display">0</div>
         <div class="buttons">
-            <div class="button" id="clear">AC</div>
-            <div class="button">±</div>
-            <div class="button">%</div>
+            <div class="button" id="clear">C</div>
+            <div class="button" id="toggle-sign">±</div>
+            <div class="button" id="percent">%</div>
             <div class="button operator">÷</div>
             <div class="button">7</div>
             <div class="button">8</div>
@@ -71,9 +105,9 @@
             <div class="button">2</div>
             <div class="button">3</div>
             <div class="button operator">+</div>
-            <div class="button">0</div>
+            <div class="button" id="zero">0</div>
             <div class="button">.</div>
-            <div class="button operator" style="grid-column: span 2;" id="equals">=</div>
+            <div class="button operator">=</div>
         </div>
     </div>
 
@@ -81,41 +115,107 @@
         let currentInput = '';
         let operator = '';
         let previousInput = '';
+        let expression = '';
 
         const display = document.getElementById('display');
+        const expressionDisplay = document.getElementById('expression-display');
         const buttons = document.querySelectorAll('.button');
 
         buttons.forEach(button => {
             button.addEventListener('click', () => {
                 const buttonText = button.innerText;
 
-                if (buttonText === 'AC') {
+                if (buttonText === 'C') {
                     clearAll();
                 } else if (buttonText === '=') {
                     calculate();
                 } else if (buttonText === '±') {
                     toggleSign();
+                } else if (buttonText === '%') {
+                    handleModulus();
                 } else {
                     handleInput(buttonText);
                 }
+                adjustDisplaySize();
             });
+        });
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key;
+
+            if (event.shiftKey && key === 'Enter') {
+                clearAll();
+                return;
+            }
+
+            const keyMappings = {
+                '0': '0',
+                '1': '1',
+                '2': '2',
+                '3': '3',
+                '4': '4',
+                '5': '5',
+                '6': '6',
+                '7': '7',
+                '8': '8',
+                '9': '9',
+                '.': '.',
+                '/': '÷',
+                '*': '×',
+                '-': '−',
+                '+': '+',
+                '=': '=',
+                'Enter': '=',
+                'Backspace': 'Backspace',
+                '%': '%'
+            };
+
+            if (keyMappings[key]) {
+                if (key === 'Backspace') {
+                    deleteLastInput();
+                } else if (key === '%') {
+                    handleModulus();
+                } else {
+                    const button = [...buttons].find(b => b.innerText === keyMappings[key]);
+                    if (button) button.click();
+                }
+            }
         });
 
         function clearAll() {
             currentInput = '';
             operator = '';
             previousInput = '';
+            expression = '';
             display.innerText = '0';
+            expressionDisplay.innerText = '';
+            display.style.transform = 'scale(1)';
+        }
+
+        function deleteLastInput() {
+            if (currentInput) {
+                currentInput = currentInput.slice(0, -1);
+                display.innerText = currentInput || '0';
+            } else if (operator) {
+                operator = '';
+            } else if (previousInput) {
+                previousInput = previousInput.slice(0, -1);
+                expression = expression.slice(0, -1);
+                expressionDisplay.innerText = expression;
+                display.innerText = previousInput || '0';
+            }
         }
 
         function handleInput(value) {
-            if (['+', '-', '×', '÷', '%', '±', '**'].includes(value)) {
-                if (currentInput === '') return; // Ignore if no input
+            if (['+', '-', '×', '÷'].includes(value)) {
+                if (currentInput === '') return;
                 if (previousInput !== '') {
                     calculate();
                 }
-                operator = value === '×' ? '*' : value === '÷' ? '/' : value === '%' ? '%' : value;
+                operator = value === '×' ? '*' : value === '÷' ? '/' : value;
                 previousInput = currentInput;
+                expression += currentInput + ' ' + value + ' ';
+                expressionDisplay.innerText = expression;
                 currentInput = '';
             } else {
                 currentInput += value;
@@ -128,6 +228,22 @@
                 currentInput = (parseFloat(currentInput) * -1).toString();
                 display.innerText = currentInput;
             }
+        }
+
+        function handleModulus() {
+            if (currentInput === '' || previousInput === '') return;
+            let result;
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+
+            result = prev % current;
+
+            expression += currentInput + ' =';
+            expressionDisplay.innerText = expression;
+            currentInput = result.toString();
+            operator = '';
+            previousInput = '';
+            display.innerText = currentInput;
         }
 
         function calculate() {
@@ -149,19 +265,28 @@
                 case '/':
                     result = prev / current;
                     break;
-                case '%':
-                    result = prev % current;
-                    break;
-                case '**':
-                    result = Math.pow(prev, current);
-                    break;
                 default:
                     return;
             }
+
+            expression += currentInput + ' =';
+            expressionDisplay.innerText = expression;
             currentInput = result.toString();
             operator = '';
             previousInput = '';
             display.innerText = currentInput;
+        }
+
+        function adjustDisplaySize() {
+            const length = display.innerText.length;
+
+            if (length > 10) {
+                display.style.transform = 'scale(0.6)';
+            } else if (length > 6) {
+                display.style.transform = 'scale(0.8)';
+            } else {
+                display.style.transform = 'scale(1)';
+            }
         }
     </script>
 </body>
