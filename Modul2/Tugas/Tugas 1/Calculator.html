@@ -68,7 +68,7 @@
             transform: scale(0.95);
             background-color: #444;
         }
-        .button#clear, .button#percent, .button#toggle-sign {
+        .button#clear, .button#percent, .button#power {
             background-color: #d4d4d2;
             color: black;
         }
@@ -90,7 +90,7 @@
         <div class="display" id="display">0</div>
         <div class="buttons">
             <div class="button" id="clear">C</div>
-            <div class="button" id="toggle-sign">±</div>
+            <div class="button" id="power">^</div>
             <div class="button" id="percent">%</div>
             <div class="button operator">÷</div>
             <div class="button">7</div>
@@ -129,8 +129,8 @@
                     clearAll();
                 } else if (buttonText === '=') {
                     calculate();
-                } else if (buttonText === '±') {
-                    toggleSign();
+                } else if (['+', '-', '×', '÷', '^'].includes(buttonText)) {
+                    handleOperator(buttonText);  
                 } else if (buttonText === '%') {
                     handleModulus();
                 } else {
@@ -165,6 +165,7 @@
                 '-': '−',
                 '+': '+',
                 '=': '=',
+                '^': '^',
                 '%': '%',
                 'Enter': '=',
                 'Backspace': 'Backspace'
@@ -207,38 +208,40 @@
         }
 
         function handleInput(value) {
-            // Cek jika value adalah operator
-            if (['+', '-', '×', '÷'].includes(value)) {
-                // Jika tidak ada input saat ini, tidak lakukan apa-apa
+            if (['+', '-', '×', '÷', '^'].includes(value)) {
                 if (currentInput === '') return;
 
-                // Ganti operator yang sebelumnya dengan yang baru
                 if (operator) {
-                    // Hapus operator sebelumnya dari ekspresi
-                    expression = expression.slice(0, -2);
+                    expression = expression.slice(0, -2);  
                 } else {
-                    previousInput = currentInput; // Simpan input saat ini sebagai previousInput jika tidak ada operator
+                    previousInput = currentInput;
                 }
 
-                // Set operator baru
                 operator = value === '×' ? '*' : value === '÷' ? '/' : value;
-                
-                // Tambahkan input saat ini dan operator baru ke ekspresi
+
                 expression += currentInput + ' ' + operator + ' ';
-                expressionDisplay.innerText = expression; // Tampilkan ekspresi
-                currentInput = ''; // Kosongkan input saat ini
+                expressionDisplay.innerText = expression;
+                currentInput = '';
             } else {
-                // Jika input bukan operator, tambahkan ke currentInput
                 currentInput += value;
                 display.innerText = currentInput;
             }
         }
 
-        function toggleSign() {
-            if (currentInput) {
-                currentInput = (parseFloat(currentInput) * -1).toString();
-                display.innerText = currentInput;
+        function handleOperator(value) {
+            if (currentInput === '') return;
+
+            if (operator) {
+                expression = expression.slice(0, -2);
+            } else {
+                previousInput = currentInput;
             }
+
+            operator = value === '×' ? '*' : value === '÷' ? '/' : value;
+
+            expression += currentInput + ' ' + operator + ' ';
+            expressionDisplay.innerText = expression;
+            currentInput = '';
         }
 
         function handleModulus() {
@@ -276,6 +279,9 @@
                 case '/':
                     result = prev / current;
                     break;
+                case '^': 
+                    result = Math.pow(prev, current);
+                    break;
                 default:
                     return;
             }
@@ -292,9 +298,7 @@
             const length = display.innerText.length;
 
             if (length > 10) {
-                display.style.transform = 'scale(0.6)';
-            } else if (length > 6) {
-                display.style.transform = 'scale(0.8)';
+                display.style.transform = `scale(${10 / length})`;
             } else {
                 display.style.transform = 'scale(1)';
             }
