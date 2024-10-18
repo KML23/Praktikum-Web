@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #d3c4f3;
+    background-color: #2e2e2e;
     margin: 0;
     font-family: 'Arial', sans-serif;
 }
@@ -12,40 +12,77 @@ body {
     width: 320px;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: #000000;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.expression-display {
+    background-color: #000000;
+    color: rgb(128, 128, 128);
+    text-align: right;
+    padding: 20px 20px 0px;
+    font-size: 18px;
+    height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .display {
-    background-color: #1c1b2b;
+    background-color: #000000;
     color: white;
     text-align: right;
-    padding: 20px;
+    padding: 0px 20px 10px;
     font-size: 48px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transition: transform 0.2s ease;
 }
 
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
 }
 
 .button {
-    background-color: #3e3d4a;
-    border: 1px solid #3e3d4a;
-    color: white;
+    border: none;
     font-size: 24px;
     padding: 20px;
     text-align: center;
     cursor: pointer;
+    border-radius: 50%;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-.button.operator {
-    background-color: #7a5cf3;
+.button:hover {
+    background-color: #555;
 }
 
 .button:active {
-    background-color: #5a5a5a;
+    transform: scale(0.95);
+    background-color: #444;
 }
 
-.button.operator:active {
-    background-color: #5a3cf3;
+.button#clear, .button#percent, .button#toggle-sign {
+    background-color: #d4d4d2;
+    color: black;
+}
+
+.button.operator {
+    background-color: #ff9500;
+}
+
+.button:not(.operator):not(#clear):not(:nth-child(2)):not(:nth-child(3)) {
+    background-color: #333333;
+}
+
+.button#zero {
+    grid-column: span 2;
+    border-radius: 50px;
 }

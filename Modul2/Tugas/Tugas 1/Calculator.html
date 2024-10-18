@@ -165,9 +165,9 @@
                 '-': '−',
                 '+': '+',
                 '=': '=',
+                '%': '%',
                 'Enter': '=',
-                'Backspace': 'Backspace',
-                '%': '%'
+                'Backspace': 'Backspace'
             };
 
             if (keyMappings[key]) {
@@ -207,17 +207,28 @@
         }
 
         function handleInput(value) {
+            // Cek jika value adalah operator
             if (['+', '-', '×', '÷'].includes(value)) {
+                // Jika tidak ada input saat ini, tidak lakukan apa-apa
                 if (currentInput === '') return;
-                if (previousInput !== '') {
-                    calculate();
+
+                // Ganti operator yang sebelumnya dengan yang baru
+                if (operator) {
+                    // Hapus operator sebelumnya dari ekspresi
+                    expression = expression.slice(0, -2);
+                } else {
+                    previousInput = currentInput; // Simpan input saat ini sebagai previousInput jika tidak ada operator
                 }
+
+                // Set operator baru
                 operator = value === '×' ? '*' : value === '÷' ? '/' : value;
-                previousInput = currentInput;
-                expression += currentInput + ' ' + value + ' ';
-                expressionDisplay.innerText = expression;
-                currentInput = '';
+                
+                // Tambahkan input saat ini dan operator baru ke ekspresi
+                expression += currentInput + ' ' + operator + ' ';
+                expressionDisplay.innerText = expression; // Tampilkan ekspresi
+                currentInput = ''; // Kosongkan input saat ini
             } else {
+                // Jika input bukan operator, tambahkan ke currentInput
                 currentInput += value;
                 display.innerText = currentInput;
             }
