@@ -10,13 +10,13 @@ class Desktop extends Device {
 
     use DisplayTrait;
 
-    public function __construct($model, $processor, $ram, $formFactor) {
-        parent::__construct($model, $processor, $ram);
+    public function __construct($model, $processor, $ram, $gpu, $formFactor) {
+        parent::__construct($model, $processor, $ram, $gpu);
         $this->formFactor = $formFactor;
     }
 
     public function getSpecs() {
-        return "Desktop - Model: {$this->model}, Processor: {$this->processor}, RAM: {$this->ram} GB, Form Factor: {$this->formFactor}";
+        return "Desktop - Model: {$this->model}, Processor: {$this->processor}, RAM: {$this->ram} GB, GPU: {$this->gpu}, Form Factor: {$this->formFactor}";
     }
 
     // Magic method __toString untuk menampilkan objek sebagai string

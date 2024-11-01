@@ -12,8 +12,8 @@ use DeviceSystem\Desktop;
 $deviceStore = new DeviceStore();
 
 // Membuat objek Laptop dan Desktop
-$laptop1 = new Laptop("ASUS ROG", "Intel i7", 16, 8);
-$desktop1 = new Desktop("Dell OptiPlex", "AMD Ryzen 5", 8, "Mini Tower");
+$laptop1 = new Laptop("ASUS ROG Flow", "Intel Core i7 12700H", 16, "RTX 3080",8);
+$desktop1 = new Desktop("ROG Strix GA35 ", "Intel Core i7 14700KF", 32, "RTX 4080","Mid Tower");
 
 // Menambahkan perangkat ke dalam koleksi
 $deviceStore->addDevice($laptop1);

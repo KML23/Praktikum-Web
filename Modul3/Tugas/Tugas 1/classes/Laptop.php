@@ -10,13 +10,13 @@ class Laptop extends Device {
 
     use DisplayTrait;
 
-    public function __construct($model, $processor, $ram, $batteryLife) {
-        parent::__construct($model, $processor, $ram);
+    public function __construct($model, $processor, $ram, $gpu, $batteryLife) {
+        parent::__construct($model, $processor, $ram, $gpu);
         $this->batteryLife = $batteryLife;
     }
 
     public function getSpecs() {
-        return "Laptop - Model: {$this->model}, Processor: {$this->processor}, RAM: {$this->ram} GB, Battery Life: {$this->batteryLife} hours";
+        return "Laptop - Model: {$this->model}, Processor: {$this->processor}, RAM: {$this->ram} GB, GPU: {$this->gpu}, Battery Life: {$this->batteryLife} hours";
     }
 
     // Magic method __toString untuk menampilkan objek sebagai string
