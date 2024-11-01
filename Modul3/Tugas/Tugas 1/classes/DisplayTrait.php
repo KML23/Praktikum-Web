@@ -1,9 +1,9 @@
 <?php
 
-namespace LibrarySystem;
+namespace DeviceSystem;
 
 trait DisplayTrait {
-    public function displayInfo() {
-        echo "Judul: {$this->title}, Penulis: {$this->author}\n";
+    public function displaySpecs() {
+        echo "Model: {$this->model}, Processor: {$this->processor}, RAM: {$this->ram} GB\n";
     }
 }

@@ -1,18 +1,23 @@
 <?php
 
-require_once 'classes/Library.php';
-require_once 'classes/Book.php';
+require_once 'classes/DeviceStore.php';
+require_once 'classes/Laptop.php';
+require_once 'classes/Desktop.php';
 
-use LibrarySystem\Library;
-use LibrarySystem\Book;
+use DeviceSystem\DeviceStore;
+use DeviceSystem\Laptop;
+use DeviceSystem\Desktop;
 
-// Contoh penggunaan program
-$library = new Library();
+// Membuat objek DeviceStore yang berfungsi sebagai koleksi perangkat
+$deviceStore = new DeviceStore();
 
-$book1 = new Book("Laskar Pelangi", "Andrea Hirata", "Fiksi");
-$book2 = new Book("Bumi Manusia", "Pramoedya Ananta Toer", "Sejarah");
+// Membuat objek Laptop dan Desktop
+$laptop1 = new Laptop("ASUS ROG", "Intel i7", 16, 8);
+$desktop1 = new Desktop("Dell OptiPlex", "AMD Ryzen 5", 8, "Mini Tower");
 
-$library->addBook($book1);
-$library->addBook($book2);
+// Menambahkan perangkat ke dalam koleksi
+$deviceStore->addDevice($laptop1);
+$deviceStore->addDevice($desktop1);
 
-$library->showAllBooks();
+// Menampilkan semua perangkat dalam koleksi
+$deviceStore->showAllDevices();
