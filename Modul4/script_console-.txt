@@ -1,0 +1,47 @@
+{
+    "name": "PlayStation 1",
+    "description": "Konsol video game legendaris yang memperkenalkan game 3D dengan berbagai judul ikonik.",
+    "price": 15000,
+    "image_url": "/Tugas1/Bahan/console/ps1.jpg",
+    "release_date": "1994-12-03"
+}
+
+{
+    "name": "PlayStation 2",
+    "description": "Konsol video game terlaris sepanjang masa, dengan fitur pemutaran DVD dan perpustakaan game yang luas.",
+    "price": 25000,
+    "image_url": "/Tugas1/Bahan/console/ps2.jpg",
+    "release_date": "2000-03-04"
+}
+
+{
+    "name": "PlayStation 3",
+    "description": "Memperkenalkan pemutaran Blu-ray dan perangkat keras yang kuat untuk pengalaman gaming definisi tinggi.",
+    "price": 50000,
+    "image_url": "/Tugas1/Bahan/console/ps3.jpg",
+    "release_date": "2006-11-11"
+}
+
+{
+    "name": "PlayStation 4",
+    "description": "Fitur gaming sosial yang ditingkatkan dan kemampuan grafis yang lebih baik untuk gameplay yang mendalam.",
+    "price": 75000,
+    "image_url": "/Tugas1/Bahan/console/ps4.jpg",
+    "release_date": "2013-11-15"
+}
+
+{
+    "name": "PlayStation 5",
+    "description": "Konsol generasi berikutnya dengan SSD ultra-cepat, ray tracing, dan umpan balik haptic untuk gaming revolusioner.",
+    "price": 100000,
+    "image_url": "/Tugas1/Bahan/console/ps5.jpg",
+    "release_date": "2020-11-12"
+}
+
+{
+    "name": "Xbox Series X",
+    "description": "Konsol dari Microsoft yang menawarkan performa tinggi dan kompatibilitas dengan game generasi sebelumnya.",
+    "price": 75000,
+    "image_url": "/Tugas1/Bahan/console/xbox.jpg",
+    "release_date": "2020-11-10"
+}
