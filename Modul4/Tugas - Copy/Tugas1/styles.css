@@ -1,0 +1,391 @@
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #0a192f;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        header {
+            background-color: #172a45;
+            color: #fff;
+            padding: 15px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            width: 50px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo:hover {
+            background-color: #648bff;
+        }
+
+        h1 {
+            color: #ffffff;
+            padding: 0;
+            font-size: 35px;
+            margin: 0;
+        }
+
+        h1 a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        h1 a:hover {
+            background-color: #648bff;
+            color: #0a192f;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: end;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            color: #648bff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #648bff;
+            color: #0a192f;
+            
+        }
+
+        .cart-logo {
+            height: 25px;
+            width: auto;
+            padding: 0px;
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        .console-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .console-background {
+            width: 100%;
+            height: 500;
+        }
+
+        .console-title {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 390px;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h3 {
+            color: #ffffff;
+            text-align: justify;
+            font-size: 35px;
+        }
+
+        img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .playstation-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            list-style-type: none;
+        }
+
+        .playstation-item {
+            background-color: #172a45;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .playstation-item:hover {
+            transform: translateY(-15px);
+        }
+
+        .playstation-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .playstation-content {
+            padding: 25px;
+        }
+
+        .playstation-content h2 {
+            color: #648bff;
+            margin-bottom: 10px;
+        }
+
+        .playstation-content p {
+            margin-bottom: 16px;
+        }
+
+        .release-date {
+            font-style: italic;
+            color: #8892b0;
+            margin-bottom: 0;
+        }
+
+        .rent-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rent-price {
+            margin: 0;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .rent-now {
+            padding: 10px 20px;
+            background-color: #648bff;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .rent-now:hover {
+            background-color: #ffffff;
+            color: #648bff;
+        }
+
+        .payment-form {
+            background-color: #172a45;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .add-to-cart {
+            padding: 10px 20px;
+            background-color: #648bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #ffffff;
+            color: #648bff;
+        }
+
+        footer {
+            background-color: #172a45;
+            color: #648bff;
+            padding: 32px 0;
+            text-align: left;
+            margin-top: 200px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .footer-left h2 {
+            margin-bottom: 16px;
+        }
+
+        .footer-left p {
+            margin-bottom: 16px;
+        }
+
+        .social-icons {
+            display: flex; /* Menggunakan flexbox untuk menyusun ikon secara horizontal */
+            align-items: center; /* Menjaga agar ikon berada di tengah secara vertikal */
+        }
+
+        .social-icons a {
+            margin-right: 10px;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-right {
+            display: flex;
+            justify-content: space-between;
+            flex : 2;
+        }
+
+        .footer-column {
+            margin-right: 32px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        h4 a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer-column ul {
+            list-style-type: none;
+        }
+
+        .footer-column ul li a {
+            color: #8892b0;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer-column ul li a:hover {
+            background-color: #648bff;
+            color: #0a192f;
+        }
+
+        footer #copyright {
+            color: #648bff;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer p {
+            color: #ffffff;
+            text-align: justify;
+            margin-top: 20px;
+        }
+
+        /* Style untuk modal */
+        .modal {
+            display: none;
+            position: fixed;
+            background-color: #172a45;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+        #cart-modal {
+            top: 10%;
+            left: 20%;
+            width: 60%;
+        }
+
+        #edit-modal {
+            top: 15%;
+            left: 25%;
+            width: 50%;
+        }
+
+        .modal-title {
+            color: #648bff;
+        }
+
+        .cart-table {
+            width: 100%;
+            color: #e0e0e0;
+            margin-top: 20px;
+        }
+
+        .modal-button {
+            margin-top: 20px;
+            background-color: #648bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cancel-button {
+            background-color: #e0e0e0;
+            color: #172a45;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            color: #e0e0e0;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
