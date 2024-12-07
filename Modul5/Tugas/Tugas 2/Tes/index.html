@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Console</title>
+    <link rel="stylesheet" href="styles.css">
+<body>
+    <header id="home">
+        <div class="header-content">
+            <h1><a href="#console-select">Console Rent</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#games-list">Game</a></li>
+                    <li><a href="#footer">Location</a></li>
+                    <li><a href="#footer">Account</a></li>
+                     <li>
+                        <button id="theme-toggle" aria-label="Toggle Theme">
+                        🌙 <!-- Ikon untuk gelap, bisa diganti sesuai keinginan -->
+                        </button>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="console-select">
+            <div class="console-container">
+                <h3 class="console-title">Select Your Console</h3>
+                <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/background/backgroundps.jpg" alt="Background" class="console-background">
+            </div>
+            <ul class="playstation-list">
+                <!-- PlayStation 1 -->
+                <li class="playstation-item">
+                    <section id="playstation1">
+                        <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/console/ps1.jpg" alt="PlayStation 1">
+                        <div class="playstation-content">
+                            <h2>PlayStation 1</h2>
+                            <p>PlayStation original yang merevolusi dunia game dengan grafis 3D dan teknologi CD-ROM.</p>
+                            <p class="release-date">Dirilis: 3 Desember 1994</p>
+                            <div class="rent-container">
+                                <p class="rent-price">Rp. 15.000,-/day</p>
+                                <button class="rent-now" onclick="showPaymentForm(this, 'ps1')">Rent Now</button>
+                            </div>
+
+                            <div class="payment-form" style="display: none;">
+                                <h3>Payment</h3>
+                                
+                                <label for="start-date">Tanggal Mulai:</label>
+                                <input type="date" id="start-date-ps1" name="start-date" onchange="updateEndDate('ps1'); calculateTotalCost('ps1', 15000)">
+                                
+                                <label for="end-date">Tanggal Selesai:</label>
+                                <input type="date" id="end-date-ps1" name="end-date" onchange="calculateTotalCost('ps1', 15000)">
+
+                                <p>Jumlah Hari Sewa: <span id="rental-days-ps1">0</span> hari</p>
+
+                                <label for="payment-method">Payment Method:</label>
+                                <select id="payment-method" name="payment-method">
+                                    <option value="credit-card">Credit Card</option>
+                                    <option value="bank-transfer">Bank Transfer</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="gopay">GoPay</option>
+                                    <option value="dana">Dana</option>
+                                </select>
+
+                                <p>Total Cost: <span class="total-cost-ps1">Rp. 0,-</span></p>
+                                <button class="confirm-payment">Confirm Payment</button>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+
+                <!-- PlayStation 2 -->
+                <li class="playstation-item">
+                    <section id="playstation2">
+                        <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/console/ps2.jpg" alt="PlayStation 2">
+                        <div class="playstation-content">
+                            <h2>PlayStation 2</h2>
+                            <p>Konsol video game terlaris sepanjang masa, dengan fitur pemutaran DVD dan perpustakaan game yang luas.</p>
+                            <p class="release-date">Dirilis: 4 Maret 2000</p>
+                            <div class="rent-container">
+                                <p class="rent-price">Rp. 25.000,-/day</p>
+                                <button class="rent-now" onclick="showPaymentForm(this, 'ps2')">Rent Now</button>
+                            </div>
+
+                            <div class="payment-form" style="display: none;">
+                                <h3>Payment</h3>
+                                
+                                <label for="start-date">Tanggal Mulai:</label>
+                                <input type="date" id="start-date-ps2" name="start-date" onchange="updateEndDate('ps2'); calculateTotalCost('ps2', 25000)">
+                                
+                                <label for="end-date">Tanggal Selesai:</label>
+                                <input type="date" id="end-date-ps2" name="end-date" onchange="calculateTotalCost('ps2', 25000)">
+
+                                <p>Jumlah Hari Sewa: <span id="rental-days-ps2">0</span> hari</p>
+
+                                <label for="payment-method">Payment Method:</label>
+                                <select id="payment-method" name="payment-method">
+                                    <option value="credit-card">Credit Card</option>
+                                    <option value="bank-transfer">Bank Transfer</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="gopay">GoPay</option>
+                                    <option value="dana">Dana</option>
+                                </select>
+
+                                <p>Total Cost: <span class="total-cost-ps2">Rp. 0,-</span></p>
+                                <button class="confirm-payment">Confirm Payment</button>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+
+                <!-- PlayStation 3 -->
+                <li class="playstation-item">
+                    <section id="playstation3">
+                        <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/console/ps3.jpg" alt="PlayStation 3">
+                        <div class="playstation-content">
+                            <h2>PlayStation 3</h2>
+                            <p>Memperkenalkan pemutaran Blu-ray dan perangkat keras yang kuat untuk pengalaman gaming definisi tinggi.</p>
+                            <p class="release-date">Dirilis: 11 November 2006</p>
+                            <div class="rent-container">
+                                <p class="rent-price">Rp. 50.000,-/day</p>
+                                <button class="rent-now" onclick="showPaymentForm(this, 'ps3')">Rent Now</button>
+                            </div>
+
+                            <div class="payment-form" style="display: none;">
+                                <h3>Payment</h3>
+                                
+                                <label for="start-date">Tanggal Mulai:</label>
+                                <input type="date" id="start-date-ps3" name="start-date" onchange="updateEndDate('ps3'); calculateTotalCost('ps3', 50000)">
+                                
+                                <label for="end-date">Tanggal Selesai:</label>
+                                <input type="date" id="end-date-ps3" name="end-date" onchange="calculateTotalCost('ps3', 50000)">
+
+                                <p>Jumlah Hari Sewa: <span id="rental-days-ps3">0</span> hari</p>
+
+                                <label for="payment-method">Payment Method:</label>
+                                <select id="payment-method" name="payment-method">
+                                    <option value="credit-card">Credit Card</option>
+                                    <option value="bank-transfer">Bank Transfer</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="gopay">GoPay</option>
+                                    <option value="dana">Dana</option>
+                                </select>
+
+                                <p>Total Cost: <span class="total-cost-ps3">Rp. 0,-</span></p>
+                                <button class="confirm-payment">Confirm Payment</button>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+
+            </ul>
+
+            <div class="games-list"  id="games-list">
+                <h3 class="game-title">Game List</h3>
+                <div class="game-item">
+                    <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/game/GTA_V.jpg" alt="GTA V">
+                    <div class="info">
+                        <h2>GTA V</h2>
+                        <p><strong>Genre:</strong> Aksi, Petualangan</p>
+                        <p><strong>Rilis:</strong> 17 September 2013</p>
+                        <p><strong>Deskripsi:</strong> Ikuti kisah tiga penjahat saat mereka berusaha melakukan pencurian besar di Los Santos.</p>
+                        <p><strong>Rating:</strong> 10/10</p>
+                    </div>
+                </div>
+
+                <div class="game-item">
+                    <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/game/tekken 8.jpg" alt="Tekken 8">
+                    <div class="info">
+                        <h2>Tekken 8</h2>
+                        <p><strong>Genre:</strong> Pertarungan</p>
+                        <p><strong>Rilis:</strong> 2023</p>
+                        <p><strong>Deskripsi:</strong> Pertarungan terbaru dalam seri Tekken dengan karakter yang lebih kuat dan gameplay yang diperbarui.</p>
+                        <p><strong>Rating:</strong> 9.5/10</p>
+                    </div>
+                </div>
+
+                <div class="game-item">
+                    <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/game/Black Myth Wukong.jpg" alt="Black Myth: Wukong">
+                    <div class="info">
+                        <h2>Black Myth: Wukong</h2>
+                        <p><strong>Genre:</strong> Aksi, Petualangan</p>
+                        <p><strong>Rilis:</strong> 19 Agustus 2024</p>
+                        <p><strong>Deskripsi:</strong> Sebuah petualangan epik berdasarkan mitologi Tiongkok dengan visual yang menakjubkan.</p>
+                        <p><strong>Rating:</strong> 9.0/10</p>
+                    </div>
+                </div>
+
+                <div class="game-item">
+                    <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/game/forzahorizon5.jpg" alt="Forza Horizon 5">
+                    <div class="info">
+                        <h2>Forza Horizon 5</h2>
+                        <p><strong>Genre:</strong> Balap</p>
+                        <p><strong>Rilis:</strong> 9 November 2021</p>
+                        <p><strong>Deskripsi:</strong> Balapan di dunia terbuka yang menakjubkan di Meksiko dengan berbagai kendaraan dan tantangan.</p>
+                        <p><strong>Rating:</strong> 9.8/10</p>
+                    </div>
+                </div>
+
+                <div class="game-item">
+                    <img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/game/codmw3.jpeg" alt="Call of Duty: Modern Warfare 3">
+                    <div class="info">
+                        <h2>Call of Duty: Modern Warfare 3</h2>
+                        <p><strong>Genre:</strong> First-Person Shooter</p>
+                        <p><strong>Rilis:</strong> 10 November 2023</p>
+                        <p><strong>Deskripsi:</strong> Pertarungan global dengan mode single-player yang mendebarkan dan multiplayer yang intens.</p>
+                        <p><strong>Rating:</strong> 8.5/10</p>
+                    </div>
+                </div>
+                </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2><a href="#home">Console Rent</a></h2>
+                <p>Enjoy the game for life.</p>
+                <div class="social-icons">
+                    <a href="#"><img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/icon/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/icon/x.png" alt="X"></a>
+                    <a href="#"><img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/icon/instagram.png" alt="Instagram"></a>
+                    <a href="#"><img src="/Modul5/Tugas/Tugas 2/Tes/Bahan/icon/whatsapp.png" alt="WhatsApp"></a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h4><a href="#home">About Us</a></h4>
+                    <ul>
+                        <li><a href="#About-Us">About Us</a></li>
+                        <li><a href="#Help">Help</a></li>
+                        <li><a href="#Contact-Us">Contact Us</a></li>
+                        <li><a href="#Privacy-Policy">Privacy Policy</a></li>
+                        <li><a href="#Terms&Conditions">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4><a href="#home">City</a></h4>
+                    <ul>
+                        <li><a href="#city-jakarta">Jakarta</a></li>
+                        <li><a href="#city-bandung">Bandung</a></li>
+                        <li><a href="#city-surabaya">Surabaya</a></li>
+                        <li><a href="#city-malang">Malang</a></li>
+                        <li><a href="#city-semarang">Semarang</a></li>
+                        <li><a href="#city-yogyakarta">Yogyakarta</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4><a href="#console-select">Console Types</a></h4>
+                    <ul>
+                        <li><a href="#playstation1">PlayStation 1</a></li>
+                        <li><a href="#playstation2">PlayStation 2</a></li>
+                        <li><a href="#playstation3">PlayStation 3</a></li>
+                        <li><a href="#playstation4">PlayStation 4</a></li>
+                        <li><a href="#playstation5">PlayStation 5</a></li>
+                        <li><a href="#xboxx">Xbox Series X</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p id="copyright">&copy; <span id="current-year"></span> Konsol Pengguna Sekitar. Hak cipta dilindungi undang-undang | <span id="current-date"></span>,  <span id="current-time"></span></p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
